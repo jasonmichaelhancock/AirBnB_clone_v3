@@ -95,8 +95,5 @@ class FileStorage:
         '''
            A method to count the number of objects in storage.
         '''
-        objects = self.all(cls).items():
-        if len(objects) == 0:
-            return (0)
-        else:
-            return (len(objects))
+        objects = self.all(cls).items()
+        return (len(objects))
