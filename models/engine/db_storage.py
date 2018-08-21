@@ -38,7 +38,7 @@ class DBStorage:
         '''
         db_dict = {}
 
-        if cls != "":
+        if cls != None:
             objs = self.__session.query(models.classes[cls]).all()
             for obj in objs:
                 key = "{}.{}".format(obj.__class__.__name__, obj.id)
@@ -103,6 +103,8 @@ class DBStorage:
         '''
            A method to count the number of objects in storage.
         '''
+        print("length:")
+        print (self.all())
         try:
             if cls is not None:
                 return (len(self.all(cls)))
