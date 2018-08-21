@@ -103,8 +103,6 @@ class DBStorage:
         '''
            A method to count the number of objects in storage.
         '''
-        print("length:")
-        print (self.all())
         try:
             if cls is not None:
                 return (len(self.all(cls)))
