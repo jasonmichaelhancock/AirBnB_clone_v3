@@ -20,8 +20,8 @@ def stats():
        'states': storage.count('State'),
        'users': storage.count('Users')
    }
-   print(stats)
-   print(jsonify(stats))
+   print(stats)'''test print'''
+   print(jsonify(stats))'''test print'''
    return jsonify(stats)
 '''
 @app_views.route('/stats')
