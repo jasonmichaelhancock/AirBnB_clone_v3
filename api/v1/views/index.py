@@ -10,11 +10,23 @@ def status():
 
 @app_views.route('/stats')
 def stats():
-    stats = {
-        'amenities': storage.count('Amenity'),
-        'cities': storage.count('Cities'),
-        'places': storage.count('Places'),
-        'reviews': storage.count('Reviews'),
-        'states': storage.count('States'),
-        'users': storage.count('Users')
-    }
+   '''Returns number of each type of object.'''
+   stats = {
+       'amenities': storage.count('Amenity'),
+       'cities': storage.count('Cities'),
+       'places': storage.count('Places'),
+       'reviews': storage.count('Reviews'),
+       'states': storage.count('States'),
+       'users': storage.count('Users')
+   }
+   return jsonify(stats)
+'''
+@app_views.route('/stats')
+def stats():
+    StatesCount= {}
+    for obj, val in models.classes.items():
+#        count= storage.count(obj)
+        StatesCount['test'] = 'test'
+        print(obj + ":" + "count")
+    return jsonify(StatesCount)
+'''
