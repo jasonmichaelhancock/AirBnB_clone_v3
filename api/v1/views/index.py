@@ -12,13 +12,12 @@ def status():
 def stats():
    '''Returns number of each type of object.'''
    stats = {
-       'test': 'test',
        'amenities': storage.count('Amenity'),
-       'cities': storage.count('Cities'),
-       'places': storage.count('Places'),
-       'reviews': storage.count('Reviews'),
+       'cities': storage.count('City'),
+       'places': storage.count('Place'),
+       'reviews': storage.count('Review'),
        'states': storage.count('State'),
-       'users': storage.count('Users')
+       'users': storage.count('User')
    }
    return jsonify(stats)
 '''
