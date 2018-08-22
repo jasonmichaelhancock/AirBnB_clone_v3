@@ -4,7 +4,7 @@ from flask import Flask, jsonify, abort, request
 app = Flask(__name__)
 
 @app_views.route('/api/v1/states', methods=['GET'])
-'''
+'''                                                                                                           
 Get list of all state objects.
 '''
 def get_states():
@@ -14,8 +14,8 @@ def get_states():
     return jsonify(states)
 
 @app_views.route('/api/v1/states/<state_id>', methods=['GET'])
-'''                                                                                                           
-Get list of a specified state object.                                                                                
+'''
+Get list of a specified state object.
 '''
 def get_state(state_id):
     for key, obj in storage.all('State').items():
