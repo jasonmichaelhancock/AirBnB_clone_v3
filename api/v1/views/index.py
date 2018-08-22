@@ -12,13 +12,16 @@ def status():
 def stats():
    '''Returns number of each type of object.'''
    stats = {
+       'test': 'test',
        'amenities': storage.count('Amenity'),
        'cities': storage.count('Cities'),
        'places': storage.count('Places'),
        'reviews': storage.count('Reviews'),
-       'states': storage.count('States'),
+       'states': storage.count('State'),
        'users': storage.count('Users')
    }
+   print(stats)
+   print(jsonify(stats))
    return jsonify(stats)
 '''
 @app_views.route('/stats')
