@@ -83,7 +83,7 @@ class FileStorage:
         '''
            A method to retrieve one object.
         '''
-        objects = self.all(cls).items():
+        objects = self.all(cls).items()
         if len(objects) == 0:
             return None
         for object in objects:
