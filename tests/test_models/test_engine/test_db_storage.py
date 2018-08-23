@@ -121,3 +121,17 @@ class test_DBStorage(unittest.TestCase):
             Test to check if storage is an instance for DBStorage
         '''
         self.assertTrue(isinstance(storage, DBStorage))
+
+    def test_get(self):
+        '''
+            Testing get method
+        '''
+        new_user = User(email="refused@apple.com", password="sooperseecret1",
+                        first_name="Amy", last_name="Galles")
+        new_record = storage.new(new_user)
+        save_id = new_user.id
+        record = storage.get("User", save_id)
+        key = "User.{}".format(save_id)
+        self.assertIsInstance(new_user, User)
+        storage.save()
+        self.assertEqual(new_record, record)
