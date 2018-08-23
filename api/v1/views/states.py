@@ -8,20 +8,20 @@ from models import storage
 from models import State
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
-'''
-    Get list of all state objects.
-'''
 def get_states():
+    '''
+    Get list of all state objects.
+    '''
     states = []
     for key, obj in storage.all('State').items():
         states.append(obj.to_dict())
     return jsonify(states)
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
-'''
-Get a specified state object.
-'''
 def get_state(state_id):
+    '''
+    Get a specified state object.
+    '''
     for key, obj in storage.all('State').items():
         if obj.id == state_id:
             return(obj.to_dict)
@@ -29,10 +29,10 @@ def get_state(state_id):
             abort(404)
 
 @app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
-'''
-Delete a specified state object.
-'''
 def delete_state(state_id):
+    '''
+    Delete a specified state object.
+    '''
     for key, obj in storage.all('State').items():
         if obj.id == state_id:
             storage.remove(obj)
@@ -40,10 +40,10 @@ def delete_state(state_id):
         abort(404)
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
-'''
-Creates a State.
-'''
 def create_state():
+    '''
+    Creates a State.
+    '''
     if not request.is_json:
         abort(400, description="Not a JSON")
     state_json = request.get_json
@@ -57,10 +57,10 @@ def create_state():
     return jsonify(new_state)
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
-'''
-Updates a State object.
-'''
 def update_state(state_id):
+    '''
+    Updates a State object.
+    '''
     if not request.is_json:
         abort(400, description="Not a JSON")
     state = storage.get('State', state_id)
