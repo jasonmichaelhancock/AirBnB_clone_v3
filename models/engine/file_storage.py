@@ -86,9 +86,9 @@ class FileStorage:
         objects = self.all(cls).items()
         if len(objects) == 0:
             return None
-        for obj, val in objects:
-            if obj.split(".")[0]==id:
-                return val
+        for key, obj in objects:
+            if key.split(".")[1]==id:
+                return obj
         return None
 
     def count(self, cls=None):
