@@ -104,9 +104,9 @@ class DBStorage:
            A method to count the number of objects in storage.
         '''
         try:
-            if cls is not None:
-                return (len(self.all(cls)))
-            else:
+            if cls is None:
                 return (len(self.all()))
+            else:
+                return (len(self.all(cls)))
         except KeyError:
             return None
