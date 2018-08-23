@@ -6,7 +6,7 @@ from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
 
-@app_views.route('/api/v1/states', methods=['GET'], strict_slashes=False)
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 '''
     Get list of all state objects.
 '''
@@ -16,9 +16,9 @@ def get_states():
         states.append(obj.to_dict())
     return jsonify(states)
 
-@app_views.route('/api/v1/states/<state_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 '''
-Get list of a specified state object.
+Get a specified state object.
 '''
 def get_state(state_id):
     for key, obj in storage.all('State').items():
@@ -27,7 +27,7 @@ def get_state(state_id):
         else:
             abort(404)
 
-@app.route('/api/v1/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 '''
 Get list of a specified state object.
 '''
@@ -38,7 +38,7 @@ def delete_state(state_id):
             return jsonify({})
         abort(404)
 
-@app.route('/api/v1/states', methods=['POST'], strict_slashes=False)
+@app.route('/states', methods=['POST'], strict_slashes=False)
 '''
 Creates a State.
 '''
