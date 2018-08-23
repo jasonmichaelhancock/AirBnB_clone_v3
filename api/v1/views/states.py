@@ -28,9 +28,9 @@ def get_state(state_id):
         else:
             abort(404)
 
-@app.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 '''
-Get list of a specified state object.
+Delete a specified state object.
 '''
 def delete_state(state_id):
     for key, obj in storage.all('State').items():
@@ -39,7 +39,7 @@ def delete_state(state_id):
             return jsonify({})
         abort(404)
 
-@app.route('/states', methods=['POST'], strict_slashes=False)
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 '''
 Creates a State.
 '''
