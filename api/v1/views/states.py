@@ -2,9 +2,10 @@
 '''
 Page for outes related to State class.
 '''
-from flask import Flask, jsonify, abort, request
+from flask import jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
+from models import State
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 '''
