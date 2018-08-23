@@ -11,6 +11,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views, url_prefix='/api/v1')
 
+
 @app.teardown_appcontext
 def teardown(exception):
     """Teardown and close"""
@@ -22,7 +23,7 @@ def page_not_found(error):
     """Return error status"""
     return make_response(jsonify({'error': 'Not Found'}), 404)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     host = getenv('HBNB_API_HOST', default='0.0.0.0')
     port = int(getenv('HBNB_API_PORT', default=5000))
     app.run(host, int(port), threaded=True)
