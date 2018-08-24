@@ -80,7 +80,7 @@ def update_city(city_id):
     if not request.is_json:
         abort(400, description="Not a JSON")
     city = storage.get('City', city_id)
-    if state is None:
+    if city is None:
         abort(404)
     update = request.get_json()
     for key, value in update.items():
