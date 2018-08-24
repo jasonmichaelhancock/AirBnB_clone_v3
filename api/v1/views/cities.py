@@ -8,7 +8,9 @@ from models import storage
 from models import City
 from models import State
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+
+@app_views.route('/states/<state_id>/cities',
+                 methods=['GET'], strict_slashes=False)
 def get_city_state(state_id):
     '''
         Get cities in a specified state object.
@@ -19,6 +21,7 @@ def get_city_state(state_id):
             cities.append(obj.to_dict())
     return jsonify(cities)
     abort(404)
+
 
 @app_views.route('/cities', methods=['GET'], strict_slashes=False)
 def get_cities():
@@ -31,6 +34,7 @@ def get_cities():
     return jsonify(cities)
     abort(404)
 
+
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
 def get_city_id(city_id):
     '''
@@ -42,7 +46,6 @@ def get_city_id(city_id):
             cities.append(obj.to_dict())
     return jsonify(cities)
     abort(404)
-
 
 
 @app_views.route('/cities/<city_id>',
