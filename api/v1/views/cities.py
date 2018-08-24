@@ -65,7 +65,7 @@ def create_city():
     if check_state is None:
         abort(404)
     new_city = City()
-    storage.new(new_city
+    storage.new(new_city)
     for key, value in update.items():
         new_state.__dict__[key] = value
     storage.save()
