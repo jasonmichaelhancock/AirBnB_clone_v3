@@ -30,25 +30,17 @@ def get_city_id(city_id):
     '''
         Get city matching specified id
     '''
-    city = storage.get('City', city_id)
-    if city is None:
-        abort(404)
-    cities = []
     for key, obj in storage.all('City').items():
         if obj.id == city_id:
-            cities.append(obj.to_dict())
-    return jsonify(cities)
-
+            return jsonify((obj.to_dict()))
+    abort(404)
 
 @app_views.route('/cities/<city_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_city(city_id):
     '''
-    Delete a specified city object.
+        Delete a specified city object.
     '''
-    city = storage.get('City', city_id)
-    if city is None:
-        abort(404)
     delcity = "City." + city_id
     cities = storage.all('City')
     for key, obj in cities.items():
@@ -56,7 +48,7 @@ def delete_city(city_id):
             storage.delete(obj)
             storage.save()
             return jsonify({})
-
+    abort(404)
 
 @app_views.route('/states/<state_id>/cities',
                  methods=['POST'], strict_slashes=False)
@@ -67,17 +59,17 @@ def create_city():
     if not request.is_json:
         abort(400, "Not a JSON")
     update = request.get_json()
-    name = update.get("name")
-    if name is None:
+    if 'name' not in update.keys():
         abort(400, "Missing name")
     check_state = storage.get('State', state_id)
     if check_state is None:
         abort(404)
     new_city = City()
-    new_city.state_id = state_id
-    new_city.name = name
-    new_city.save()
-    return jsonify(new_city.to_dict()), 200
+    storage.new(new_city)
+    for key, value in update.items():
+        new_state.__dict__[key] = value
+    storage.save()
+    return jsonify(new_city)
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
