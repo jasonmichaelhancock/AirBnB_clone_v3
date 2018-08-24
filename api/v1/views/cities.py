@@ -16,23 +16,13 @@ def get_city_state(state_id):
         Get cities in a specified state object.
     '''
     cities = []
+    state = storage.get('State', state_id)
+    if state is None:
+        abort(404)
     for key, obj in storage.all('City').items():
         if obj.state_id == state_id:
             cities.append(obj.to_dict())
-    return jsonify(cities)
-    abort(404)
-
-
-@app_views.route('/cities', methods=['GET'], strict_slashes=False)
-def get_cities():
-    '''
-        Get all cities in table
-    '''
-    cities = []
-    for key, obj in storage.all('City').items():
-        cities.append(obj.to_dict())
-    return jsonify(cities)
-    abort(404)
+            return jsonify(cities)
 
 
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
