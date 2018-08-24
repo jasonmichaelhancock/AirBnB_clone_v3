@@ -36,9 +36,12 @@ def delete_state(state_id):
     '''
     Delete a specified state object.
     '''
-    for key, obj in storage.all('State').items():
-        if obj.id == state_id:
+    states = storage.all('State')
+    for key, obj in states.items():
+        if key == delstate:
+            print(key, obj)
             storage.delete(obj)
+            storage.save()
             return jsonify({})
     abort(404)
 
