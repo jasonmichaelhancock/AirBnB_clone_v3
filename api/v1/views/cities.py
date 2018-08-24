@@ -20,18 +20,16 @@ def get_city_state(state_id):
     return jsonify(cities)
     abort(404)
 
-
-
-@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
-def get_city(city_id):
+@app_views.route('/cities', methods=['GET'], strict_slashes=False)
+def get_cities():
     '''
-    Get a specified city object.
+        Get all cities in table
     '''
+    cities = []
     for key, obj in storage.all('City').items():
-        if obj.id == city_id:
-            return(obj.to_dict)
+        cities.append(obj.to_dict())
+    return jsonify(cities)
     abort(404)
-
 
 @app_views.route('/cities/<city_id>',
                  methods=['DELETE'], strict_slashes=False)
