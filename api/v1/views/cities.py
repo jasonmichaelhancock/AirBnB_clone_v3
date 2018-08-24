@@ -57,6 +57,7 @@ def delete_city(city_id):
     for key, obj in storage.all('City').items():
         if obj.id == city_id:
             storage.delete(obj)
+            storage.save()
             return jsonify({})
     abort(404)
 
