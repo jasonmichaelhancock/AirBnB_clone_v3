@@ -36,6 +36,7 @@ def delete_state(state_id):
     '''
     Delete a specified state object.
     '''
+    delstate = "State." + state_id
     states = storage.all('State')
     for key, obj in states.items():
         if key == delstate:
