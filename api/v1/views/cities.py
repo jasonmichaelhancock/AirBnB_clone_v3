@@ -54,8 +54,10 @@ def delete_city(city_id):
     '''
     Delete a specified city object.
     '''
-    for key, obj in storage.all('City').items():
-        if obj.id == city_id:
+    delcity = "City." + state_id
+    cities = storage.all('City')
+    for key, obj in cities.items():
+        if key == delcity:
             storage.delete(obj)
             storage.save()
             return jsonify({})
