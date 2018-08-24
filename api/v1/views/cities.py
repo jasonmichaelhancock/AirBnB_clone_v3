@@ -54,7 +54,7 @@ def delete_city(city_id):
     '''
     Delete a specified city object.
     '''
-    delcity = "City." + state_id
+    delcity = "City." + city_id
     cities = storage.all('City')
     for key, obj in cities.items():
         if key == delcity:
