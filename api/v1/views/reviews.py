@@ -5,18 +5,23 @@ Page for outes related to State class.
 from flask import jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
-from models import State
+from models import Place
 from models import Review
 
 
-@app_views.route('/reviews', methods=['GET'], strict_slashes=False)
-def get_states():
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
+def get_reviews_place(place_id):
     '''
-    Get list of all review objects.
+        Get reviews in a specified Place object.
     '''
-    review = []
+    reviews = []
+    place = storage.get('Place', place_id)
+    if place is None:
+        abort(404)
     for key, obj in storage.all('Review').items():
-        reviews.append(obj.to_dict())
+        if obj.place_id == place_id:
+            reviews.append(obj.to_dict())
     return jsonify(reviews)
 
 
