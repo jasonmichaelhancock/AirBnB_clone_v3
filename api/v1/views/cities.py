@@ -31,6 +31,20 @@ def get_cities():
     return jsonify(cities)
     abort(404)
 
+@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+def get_city_id(city_id):
+    '''
+        Get city matching specified id
+    '''
+    cities = []
+    for key, obj in storage.all('City').items():
+        if obj.id == city_id:
+            cities.append(obj.to_dict())
+    return jsonify(cities)
+    abort(404)
+
+
+
 @app_views.route('/cities/<city_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_city(city_id):
