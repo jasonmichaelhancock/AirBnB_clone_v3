@@ -49,19 +49,19 @@ def delete_user(user_id):
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
 def create_user():
     '''
-    Creates a State.
+    Creates a User
     '''
     if not request.is_json:
         abort(400, "Not a JSON")
     update = request.get_json()
     if 'name' not in update.keys():
         abort(400, "Missing name")
-    new_state = User()
+    new_user = User()
     storage.new(new_user)
     for key, value in update.items():
-        new_state.__dict__[key] = value
+        new_user.__dict__[key] = value
     storage.save()
-    return jsonify(new_state.to_dict)
+    return jsonify(new_user.to_dict)
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
