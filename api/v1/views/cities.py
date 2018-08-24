@@ -35,13 +35,15 @@ def get_city_id(city_id):
             return jsonify((obj.to_dict()))
     abort(404)
 
-
 @app_views.route('/cities/<city_id>',
                  methods=['DELETE'], strict_slashes=False)
 def delete_city(city_id):
     '''
     Delete a specified city object.
     '''
+    city = storage.get('City', city_id)
+    if city is None:
+        abort(404)
     delcity = "City." + city_id
     cities = storage.all('City')
     for key, obj in cities.items():
@@ -49,7 +51,6 @@ def delete_city(city_id):
             storage.delete(obj)
             storage.save()
             return jsonify({})
-    abort(404)
 
 
 @app_views.route('/states/<state_id>/cities',
