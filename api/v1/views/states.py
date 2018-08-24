@@ -40,7 +40,6 @@ def delete_state(state_id):
     states = storage.all('State')
     for key, obj in states.items():
         if key == delstate:
-            print(key, obj)
             storage.delete(obj)
             storage.save()
             return jsonify({})

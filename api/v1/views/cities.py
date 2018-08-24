@@ -30,11 +30,9 @@ def get_city_id(city_id):
     '''
         Get city matching specified id
     '''
-    cities = []
     for key, obj in storage.all('City').items():
         if obj.id == city_id:
-            cities.append(obj.to_dict())
-    return jsonify(cities)
+            return jsonify((obj.to_dict()))
     abort(404)
 
 
