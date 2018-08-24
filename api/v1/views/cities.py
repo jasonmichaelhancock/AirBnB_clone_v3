@@ -8,6 +8,7 @@ from models import storage
 from models import City
 from models import State
 
+
 @app_views.route('/states/<state_id>/cities',
                  methods=['GET'], strict_slashes=False)
 def get_cities_state():
