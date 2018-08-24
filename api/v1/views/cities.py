@@ -69,7 +69,7 @@ def create_city():
     for key, value in update.items():
         new_state.__dict__[key] = value
     storage.save()
-    return jsonify(new_city)
+    return jsonify(new_city.to_dict)
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
