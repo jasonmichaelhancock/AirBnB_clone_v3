@@ -8,6 +8,7 @@ from models import storage
 from models import State
 from models import User
 
+
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_users():
     '''
@@ -29,6 +30,7 @@ def get_user(user_id):
         if obj.id == user_id:
             return jsonify((obj.to_dict()))
     abort(404)
+
 
 @app_views.route('/users/<user_id>',
                  methods=['DELETE'], strict_slashes=False)
