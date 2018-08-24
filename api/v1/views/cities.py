@@ -65,11 +65,11 @@ def create_city():
     if check_state is None:
         abort(404)
     new_city = City()
-    storage.new(new_city)
+    storage.new(new_city
     for key, value in update.items():
         new_state.__dict__[key] = value
     storage.save()
-    return jsonify(new_city)
+    return jsonify(new_city.to_dict)
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
