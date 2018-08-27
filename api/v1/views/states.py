@@ -61,7 +61,7 @@ def create_state():
     for key, value in update.items():
         new_state.__dict__[key] = value
     storage.save()
-    return jsonify(new_state.to_dict)
+    return jsonify(new_state.to_dict())
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
