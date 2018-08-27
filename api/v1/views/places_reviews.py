@@ -62,7 +62,7 @@ def create_reviews():
     for key, value in update.items():
         new_review.__dict__[key] = value
     storage.save()
-    return jsonify(new_review.to_dict)
+    return jsonify(new_review.to_dict()), 201
 
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)

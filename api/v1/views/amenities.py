@@ -63,7 +63,7 @@ def create_amenity():
     for key, value in update.items():
         new_amenity.__dict__[key] = value
     storage.save()
-    return jsonify(new_amenity.to_dict)
+    return jsonify(new_amenity.to_dict()), 201
 
 
 @app_views.route('/amenities/<amenity_id>',

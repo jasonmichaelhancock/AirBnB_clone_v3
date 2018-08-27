@@ -75,7 +75,7 @@ def create_place():
     for key, value in update.items():
         new_user.__dict__[key] = value
     storage.save()
-    return jsonify(new_place.to_dict())
+    return jsonify(new_place.to_dict()), 201
 
 
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
