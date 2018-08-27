@@ -26,7 +26,7 @@ def get_state(state_id):
     '''
     for key, obj in storage.all('State').items():
         if obj.id == state_id:
-            return jsonify((obj.to_dict()))
+            return jsonify(obj.to_dict())
     abort(404)
 
 

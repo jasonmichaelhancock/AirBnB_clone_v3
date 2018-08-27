@@ -32,7 +32,7 @@ def get_place(place_id):
     '''
     for key, obj in storage.all('Place').items():
         if obj.id == place_id:
-            return jsonify((obj.to_dict()))
+            return jsonify(obj.to_dict())
     abort(404)
 
 
@@ -75,7 +75,7 @@ def create_place():
     for key, value in update.items():
         new_user.__dict__[key] = value
     storage.save()
-    return jsonify(new_place.to_dict)
+    return jsonify(new_place.to_dict())
 
 
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)

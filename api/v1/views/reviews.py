@@ -32,7 +32,7 @@ def get_review(review_id):
     '''
     for key, obj in storage.all('Review').items():
         if obj.id == review_id:
-            return jsonify((obj.to_dict()))
+            return jsonify(obj.to_dict())
     abort(404)
 
 
@@ -67,7 +67,7 @@ def create_reviews():
     for key, value in update.items():
         new_review.__dict__[key] = value
     storage.save()
-    return jsonify(new_review.to_dict)
+    return jsonify(new_review.to_dict())
 
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)

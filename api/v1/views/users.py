@@ -28,7 +28,7 @@ def get_user(user_id):
     '''
     for key, obj in storage.all('User').items():
         if obj.id == user_id:
-            return jsonify((obj.to_dict()))
+            return jsonify(obj.to_dict())
     abort(404)
 
 
@@ -63,7 +63,7 @@ def create_user():
     for key, value in update.items():
         new_user.__dict__[key] = value
     storage.save()
-    return jsonify(new_user.to_dict)
+    return jsonify(new_user.to_dict())
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
