@@ -32,7 +32,7 @@ def get_city_id(city_id):
     '''
     for key, obj in storage.all('City').items():
         if obj.id == city_id:
-            return jsonify((obj.to_dict()))
+            return jsonify(obj.to_dict())
     abort(404)
 
 @app_views.route('/cities/<city_id>',
@@ -69,7 +69,7 @@ def create_city():
     for key, value in update.items():
         new_state.__dict__[key] = value
     storage.save()
-    return jsonify(new_city.to_dict)
+    return jsonify(new_city.to_dict())
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
